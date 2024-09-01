@@ -1,0 +1,25 @@
+# spring.application.name=User
+# application.yml
+spring:
+  application:
+    name: example-service
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://198.19.153.13:8761/eureka
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  config:
+    import: vault://
+    cloud:
+      vault:
+        uri: http://198.19.202.119  # Vault ?? ??
+        authentication: token
+        token: ${vault-token}
+        kv:
+          enabled: true
+          backend: secret
+          default-context: mysql
