@@ -1,8 +1,7 @@
 package REC.controller.request
 
-import java.util.*
-
-data class CreateUserRequest(
+data class RegisterRequest(
+    val userId : String,
     val userName: String,
     val password: String,
     val email: String,

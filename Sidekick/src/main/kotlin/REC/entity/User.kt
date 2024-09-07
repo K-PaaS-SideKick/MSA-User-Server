@@ -10,7 +10,7 @@ import java.util.UUID
 class User (
     @Id
     @Column(name = "user_id")
-    val userId : UUID,
+    val userId : String,
 
     @Column(name = "name")
     val userName : String,
