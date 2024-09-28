@@ -1,3 +1,5 @@
 package REC.controller.request
 
-data class DeleteUserRequest()
+data class DeleteUserRequest(
+    val uid : String,
+)

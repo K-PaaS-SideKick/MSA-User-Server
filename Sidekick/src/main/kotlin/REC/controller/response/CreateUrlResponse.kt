@@ -1,3 +1,5 @@
 package REC.controller.response
 
-data class CreateUrlResponse()
+data class CreateUrlResponse(
+    val cvid : Long
+)

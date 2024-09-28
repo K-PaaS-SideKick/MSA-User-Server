@@ -1,4 +1,5 @@
 package REC.controller.response
 
-class UpdateUrlResponse {
-}
+data class UpdateUrlResponse (
+    val cvid : Long,
+)

@@ -1,4 +1,5 @@
 package REC.controller.request
 
-data class DeleteUrlRequest {
-}
+data class DeleteUrlRequest (
+    val cvid: Long
+)

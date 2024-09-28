@@ -1,4 +1,5 @@
 package REC.controller.response
 
-class DeleteUserResponse {
-}
+data class DeleteUserResponse (
+    val res : String
+)

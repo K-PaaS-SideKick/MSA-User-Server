@@ -37,47 +37,4 @@ class UserController(
     fun deleteUser(@PathVariable nickname: String, @Valid @RequestBody deleteUserRequest: DeleteUserRequest) {
         userService.deleteUser(deleteUserRequest)
     }
-
-    //Follow
-    @PostMapping("/follow/{nickname}")
-    fun followUser(@PathVariable nickname: String, @RequestBody followRequest: FollowRequest): FollowResponse {
-        return userService.followUser(followRequest)
-    }
-
-    //UnFollow
-    @DeleteMapping("/unfollow/{nickname}")
-    fun unfollowUser(@PathVariable nickname: String, @RequestBody unfollowRequest: UnfollowRequest) : UnfollowResponse{
-        return userService.unfollowUser(unfollowRequest)
-    }
-
-    //Block
-    @PostMapping("/block/{nickname}")
-    fun blcokUser(@PathVariable nickname: String, @RequestBody blockRequest: BlockRequest): BlockResponse {
-        return userService.blockUser(blockRequest)
-    }
-    //UnBlock
-    @DeleteMapping("/unblock/{nickname}")
-    fun unblockUser(@PathVariable nickname: String, @RequestBody unblockRequest: UnblockRequest) : UnblockResponse{
-        return userService.unblockUser(unblockRequest)
-    }
-
-    //CreateUrl
-    @PostMapping("/{nickname}/create-url}")
-    fun createUrl(@PathVariable nickname : String, @RequestBody createUrlRequest : CreateUrlRequest) : CreateUrlResponse{
-        return userService.createUrl(createUrlRequest)
-    }
-
-    //UpdateUrl
-    @PostMapping("/{nickname}/update-url")
-    fun updateUrl(@PathVariable nickname: String, @RequestBody updateUrlRequest : UpdateUrlRequest) : UpdateUrlResponse{
-        return userService.updateUrl(updateUrlRequest)
-    }
-
-    //DeleteUrl
-    @PostMapping("/{nickname}/delete-url")
-    fun updateUrl(@PathVariable nickname: String, @RequestBody deleteUrlRequest: DeleteUrlRequest) : DeleteUrlResponse{
-        return userService.deleteUrl(deleteUrlRequest)
-    }
-
-
 }

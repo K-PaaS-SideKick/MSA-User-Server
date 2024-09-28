@@ -1,3 +1,5 @@
 package REC.controller.request
 
-data class UnfollowRequest()
+data class UnfollowRequest(
+    val fid : Long
+)

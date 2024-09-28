@@ -26,60 +26,44 @@ class UserService (
 
         userRepository.save(userInfo)
 
-        return CreateUserResponse(userInfo.uId)
+        return CreateUserResponse(userInfo.uid)
     }
 
     fun getUser(getUserRequest : GetUserRequest) : GetUserResponse {
+        val userInfo = userRepository.findByUserId(getUserRequest.uid)
         return GetUserResponse (
-
+            userInfo.uid,
+            userInfo.userId,
+            userInfo.userName,
+            userInfo.password,
+            userInfo.email,
+            userInfo.nickname,
         )
     }
 
     fun updateUser(updateUserRequest: UpdateUserRequest) : UpdateUserResponse {
-        return UpdateUserResponse(
+        val oldUserInfo = userRepository.findByUserId(updateUserRequest.uid)
 
+        val newUserInfo = User(
+            oldUserInfo.uid,
+            updateUserRequest.userId,
+            updateUserRequest.userName,
+            updateUserRequest.password,
+            updateUserRequest.email,
+            updateUserRequest.nickname,
+            true,
         )
+
+        userRepository.save(newUserInfo)
+
+        return UpdateUserResponse(newUserInfo.uid)
     }
 
     fun deleteUser(deleteUserRequest: DeleteUserRequest) : DeleteUserResponse {
+        val result = userRepository.deleteById(deleteUserRequest.uid)
         return DeleteUserResponse(
-
+            "Success"
         )
     }
 
-    fun followUser(followRequest: FollowRequest) : FollowResponse {
-        return FollowResponse(
-
-        )
-    }
-
-    fun unfollowUser(unfollowRequest: UnfollowRequest) : UnfollowResponse {
-        return UnfollowResponse(
-
-        )
-    }
-
-    fun unblockUser(unblockRequest: UnblockRequest) : UnblockResponse {
-        return UnblockResponse(
-
-        )
-    }
-
-    fun createUrl(createUrlRequest: CreateUrlRequest) : CreateUrlResponse {
-        return CreateUrlResponse(
-
-        )
-    }
-
-    fun updateUrl(updateUrlRequest: UpdateUrlRequest) : UpdateUrlResponse {
-        return UpdateUrlResponse(
-
-        )
-    }
-
-    fun deleteUrl(deleteUrlRequest: DeleteUrlRequest) : DeleteUrlResponse {
-        return DeleteUrlResponse(
-
-        )
-    }
 }

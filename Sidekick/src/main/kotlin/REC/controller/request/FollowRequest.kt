@@ -1,3 +1,6 @@
 package REC.controller.request
 
-data class FollowRequest()
+data class FollowRequest(
+    val followId : String,
+    val fellowId : String
+)

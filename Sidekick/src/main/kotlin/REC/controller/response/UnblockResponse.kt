@@ -1,3 +1,5 @@
 package REC.controller.response
 
-data class UnblockResponse()
+data class UnblockResponse(
+    val res : String,
+)

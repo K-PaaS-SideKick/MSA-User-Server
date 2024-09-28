@@ -1,3 +1,5 @@
 package REC.controller.response
 
-data class FollowResponse()
+data class FollowResponse(
+    val fid: Long
+)
