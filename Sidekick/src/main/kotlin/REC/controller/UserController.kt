@@ -1,66 +1,83 @@
 package REC.controller
 
-import REC.controller.request.LoginRequest
-import REC.controller.request.RegisterRequest
-import REC.controller.response.LoginResponse
-import REC.controller.response.RegisterResponse
+import REC.controller.request.*
+import REC.controller.request.DeleteUrlRequest
+import REC.controller.response.*
 import REC.service.UserService
 import jakarta.validation.Valid
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import jakarta.ws.rs.Path
+import org.hibernate.sql.Delete
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
 
 @RestController("/user")
 class UserController(
     private val userService: UserService
 ) {
-    // Register
-    @PostMapping("/register")
-    fun registerUser(@Valid @RequestBody registerRequest: RegisterRequest): RegisterResponse {
-        return userService.registerUser(registerRequest)
+    //createUser
+    @PostMapping("/register/{nickname}")
+    fun createUser(@PathVariable nickname : String, @Valid @RequestBody createUserRequest: CreateUserRequest): CreateUserResponse {
+        return userService.createUser(createUserRequest)
     }
 
-    // Login
-    @PostMapping("/login")
-    fun login(@Valid @RequestBody loginRequest : LoginRequest): LoginResponse {
-        val loginResponse = userService.login(loginRequest)
-
-        return LoginResponse(loginResponse)
+    //GetUser
+    @PostMapping("/get/{nickname}")
+    fun getUser(@PathVariable nickname: String, @RequestBody getUserRequest : GetUserRequest) : GetUserResponse {
+        return userService.getUser(getUserRequest)
     }
 
-    // MyProjects
-    @GetMapping("/{userId}/projects")
-    fun getMyProjects(@PathVariable userId: Long): ResponseEntity<List<ProjectDto>> {
-        val projects = userService.getProjectsByUserId(userId)
-        return ResponseEntity.ok(projects)
+    //updateUser
+    @PostMapping("/update/{nickname}")
+    fun updateUser(@PathVariable nickname : String, @Valid @RequestBody updateUserRequest: UpdateUserRequest): UpdateUserResponse {
+        return userService.updateUser(updateUserRequest)
     }
 
-    // MyPosts
-    @GetMapping("/{userId}/posts")
-    fun getMyPosts(@PathVariable userId: Long): ResponseEntity<List<PostDto>> {
-        val posts = userService.getPostsByUserId(userId)
-        return ResponseEntity.ok(posts)
+    //deleteUser
+    @DeleteMapping("/delete/{nickname}")
+    fun deleteUser(@PathVariable nickname: String, @Valid @RequestBody deleteUserRequest: DeleteUserRequest) {
+        userService.deleteUser(deleteUserRequest)
     }
 
-    // MyScraps
-    @GetMapping("/{userId}/scraps")
-    fun getMyScraps(@PathVariable userId: Long): ResponseEntity<List<PostDto>> {
-        val scraps = userService.getScrapsByUserId(userId)
-        return ResponseEntity.ok(scraps)
+    //Follow
+    @PostMapping("/follow/{nickname}")
+    fun followUser(@PathVariable nickname: String, @RequestBody followRequest: FollowRequest): FollowResponse {
+        return userService.followUser(followRequest)
     }
 
-    // MyLikes
-    @GetMapping("/{userId}/likes")
-    fun getMyLikes(@PathVariable userId: Long): ResponseEntity<List<PostDto>> {
-        val likes = userService.getLikesByUserId(userId)
-        return ResponseEntity.ok(likes)
+    //UnFollow
+    @DeleteMapping("/unfollow/{nickname}")
+    fun unfollowUser(@PathVariable nickname: String, @RequestBody unfollowRequest: UnfollowRequest) : UnfollowResponse{
+        return userService.unfollowUser(unfollowRequest)
     }
 
-    // MyComments
-    @GetMapping("/{userId}/comments")
-    fun getMyComments(@PathVariable userId: Long): ResponseEntity<List<CommentDto>> {
-        val comments = userService.getCommentsByUserId(userId)
-        return ResponseEntity.ok(comments)
+    //Block
+    @PostMapping("/block/{nickname}")
+    fun blcokUser(@PathVariable nickname: String, @RequestBody blockRequest: BlockRequest): BlockResponse {
+        return userService.blockUser(blockRequest)
     }
+    //UnBlock
+    @DeleteMapping("/unblock/{nickname}")
+    fun unblockUser(@PathVariable nickname: String, @RequestBody unblockRequest: UnblockRequest) : UnblockResponse{
+        return userService.unblockUser(unblockRequest)
+    }
+
+    //CreateUrl
+    @PostMapping("/{nickname}/create-url}")
+    fun createUrl(@PathVariable nickname : String, @RequestBody createUrlRequest : CreateUrlRequest) : CreateUrlResponse{
+        return userService.createUrl(createUrlRequest)
+    }
+
+    //UpdateUrl
+    @PostMapping("/{nickname}/update-url")
+    fun updateUrl(@PathVariable nickname: String, @RequestBody updateUrlRequest : UpdateUrlRequest) : UpdateUrlResponse{
+        return userService.updateUrl(updateUrlRequest)
+    }
+
+    //DeleteUrl
+    @PostMapping("/{nickname}/delete-url")
+    fun updateUrl(@PathVariable nickname: String, @RequestBody deleteUrlRequest: DeleteUrlRequest) : DeleteUrlResponse{
+        return userService.deleteUrl(deleteUrlRequest)
+    }
+
+
 }

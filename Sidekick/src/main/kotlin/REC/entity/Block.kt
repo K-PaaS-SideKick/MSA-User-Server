@@ -1,15 +1,17 @@
 package REC.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 @Entity(name = "block")
 class Block (
     @Id
+    @Column(name = "bid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val bid : Long,
+
     @Column(name = "block")
-    val block_id : Long,
+    val blockId : String,
 
     @Column(name = "blocked")
-    val blocked_id : Long,
+    val blockedId : String,
 ) : BaseTimeEntity() {}

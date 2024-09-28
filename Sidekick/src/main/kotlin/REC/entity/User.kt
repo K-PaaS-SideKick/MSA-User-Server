@@ -9,7 +9,10 @@ import java.util.UUID
 @Entity(name = "user")
 class User (
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user-id")
+    val uId : String,
+
+    @Column(name = "Id")
     val userId : String,
 
     @Column(name = "name")
@@ -24,7 +27,7 @@ class User (
     @Column(name = "nickname")
     val nickname : String,
 
-    @Column(name = "cv")
-    val cv : String,
+    @Column(name = "state")
+    val state : Boolean,
 ) : BaseTimeEntity() {
 }

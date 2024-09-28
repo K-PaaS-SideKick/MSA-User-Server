@@ -1,16 +1,17 @@
 package REC.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 @Entity(name = "follow")
 class Follow (
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val fid : Long,
+
     @Column(name = "follow_id")
-    val follow_id : Long,
+    val followId : String,
 
     @Column(name = "fellow_id")
-    val fellow_id : Long
+    val fellowId : String
 ) : BaseTimeEntity() {
 }

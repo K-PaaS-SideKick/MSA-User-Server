@@ -1,5 +1,5 @@
 package REC.controller.response
 
-data class RegisterResponse (
+data class CreateUserResponse (
     val userName: String,
     )

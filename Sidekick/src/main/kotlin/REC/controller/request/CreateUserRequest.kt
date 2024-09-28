@@ -1,6 +1,6 @@
 package REC.controller.request
 
-data class RegisterRequest(
+data class CreateUserRequest(
     val userId : String,
     val userName: String,
     val password: String,

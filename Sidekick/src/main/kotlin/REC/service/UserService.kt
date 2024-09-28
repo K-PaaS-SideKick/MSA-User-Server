@@ -1,40 +1,85 @@
 package REC.service
 
-import REC.controller.request.LoginRequest
-import REC.controller.request.RegisterRequest
-import REC.controller.request.UpdateUserRequest
-import REC.controller.response.LoginResponse
-import REC.controller.response.RegisterResponse
+import REC.controller.request.*
+import REC.controller.request.DeleteUrlRequest
+import REC.controller.response.*
+import REC.entity.Block
 import REC.entity.User
 import REC.repository.UserRepository
-import org.springframework.stereotype.Service
 import java.util.*
+import org.springframework.stereotype.Service
 
 @Service
 class UserService (
     private val userRepository: UserRepository
 ){
-    fun registerUser(registerRequest: RegisterRequest) : RegisterResponse {
-        val res =
-            userRepository.save(
-                User(
-                    registerRequest.userId,
-                    registerRequest.userName,
-                    registerRequest.password,
-                    registerRequest.email,
-                    registerRequest.nickname,
-                    ""
-                )
-            )
+    fun createUser(createUserRequest: CreateUserRequest) : CreateUserResponse {
+        val userInfo = User(
+            UUID.randomUUID().toString(),
+            createUserRequest.userId,
+            createUserRequest.userName,
+            createUserRequest.password,
+            createUserRequest.email,
+            createUserRequest.nickname,
+            true,
+        )
 
-        return RegisterResponse(res.userName)
+        userRepository.save(userInfo)
+
+        return CreateUserResponse(userInfo.uId)
     }
 
-    fun login(loginRequest: LoginRequest) : LoginResponse {
-        val user = userRepository.findByUserId(loginRequest.userId) ?: throw IllegalArgumentException("UserNotFound")
+    fun getUser(getUserRequest : GetUserRequest) : GetUserResponse {
+        return GetUserResponse (
+
+        )
     }
 
-    fun updateUser(updateUserRequest: UpdateUserRequest) {
+    fun updateUser(updateUserRequest: UpdateUserRequest) : UpdateUserResponse {
+        return UpdateUserResponse(
 
+        )
+    }
+
+    fun deleteUser(deleteUserRequest: DeleteUserRequest) : DeleteUserResponse {
+        return DeleteUserResponse(
+
+        )
+    }
+
+    fun followUser(followRequest: FollowRequest) : FollowResponse {
+        return FollowResponse(
+
+        )
+    }
+
+    fun unfollowUser(unfollowRequest: UnfollowRequest) : UnfollowResponse {
+        return UnfollowResponse(
+
+        )
+    }
+
+    fun unblockUser(unblockRequest: UnblockRequest) : UnblockResponse {
+        return UnblockResponse(
+
+        )
+    }
+
+    fun createUrl(createUrlRequest: CreateUrlRequest) : CreateUrlResponse {
+        return CreateUrlResponse(
+
+        )
+    }
+
+    fun updateUrl(updateUrlRequest: UpdateUrlRequest) : UpdateUrlResponse {
+        return UpdateUrlResponse(
+
+        )
+    }
+
+    fun deleteUrl(deleteUrlRequest: DeleteUrlRequest) : DeleteUrlResponse {
+        return DeleteUrlResponse(
+
+        )
     }
 }
