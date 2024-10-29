@@ -3,9 +3,9 @@ spring:
     import: vault://
   cloud:
     vault:
-      uri: http://198.19.227.58:15201
+      uri: http://dev-vault-ui-12c58-26121886-6be70ad3b1e1.kr.lb.naverncp.com:15201 # Vault 서버 주소
       authentication: token
-      token: ${VAULT_SECRET}
+      token: hvs.ILrmXD0iLYz8vvtuVGWYVGcu
       kv:
         enabled: true
         backend: secret
@@ -41,7 +41,7 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://198.18.0.169:8761/eureka
-    enabled: true
+    enabled: false
   instance:
     hostname: localhost
     prefer-ip-address: true
