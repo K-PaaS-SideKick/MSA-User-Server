@@ -5,7 +5,7 @@ spring:
     vault:
       uri: http://198.19.227.58:15201
       authentication: token
-      token: ${VAULT_SECRET}
+      token:  ${VAULT_SECRET}
       kv:
         enabled: true
         backend: secret
@@ -18,7 +18,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
